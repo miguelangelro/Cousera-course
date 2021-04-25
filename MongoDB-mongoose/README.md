@@ -1,5 +1,7 @@
 # Assignment 2
 
+In this assignment I was told to do the following exercices.
+
 ## Task 1
 You are given the following example of a promotion document. You will now create the Promotions schema and model to support the document:
 
