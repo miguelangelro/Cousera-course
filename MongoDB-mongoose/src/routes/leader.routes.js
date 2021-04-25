@@ -1,39 +1,35 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const Promotions = require('../models/promotions');
+const Leaders = require('../models/leaders.model');
 
-const promoRouter = express.Router();
+const leaderRouter = express.Router();
 
-promoRouter.use(bodyParser.json());
-
-promoRouter.route('/')
+leaderRouter.route('/')
 .get((req,res,next) => {
-    Promotions.find({})
-    .then((promotions) => {
+    Leaders.find({})
+    .then((leaders) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');    
-        res.json(promotions);
+        res.json(leaders);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
 .post((req, res, next) => {
-    Promotions.create(req.body)
-    .then((promotion) => {
-        console.log('Promotion Created ', promotion);
+    Leaders.create(req.body)
+    .then((leader) => {
+        console.log('Leader Created ', leader);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');    
-        res.json(promotion);
+        res.json(leader);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.put((req, res, next) => {
+.put((req, res) => {
     res.statusCode = 403;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('PUT operation not supported on /promotions');
+    res.end('PUT operation not supported on /leaders');
 })
 .delete((req, res, next) => {
-    Promotions.remove({})
+    Leaders.remove({})
     .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');    
@@ -42,34 +38,34 @@ promoRouter.route('/')
     .catch((err) => next(err));
 });
 
-promoRouter.route('/:promoId')
+leaderRouter.route('/:leaderId')
 .get((req,res,next) => {
-    Promotions.findById(req.params.promoId)
-    .then((promotion) => {
+    Leaders.findById(req.params.leaderId)
+    .then((leader) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');    
-        res.json(promotion);
+        res.json(leader);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
-.post((req, res, next) => {
+.post((req, res) => {
     res.statusCode = 403;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('POST operation not supported on /promotions/'+ req.params.promoId);
+    res.end('POST operation not supported on /leaders/'+ req.params.leaderId);
 })
 .put((req, res, next) => {
-    Promotions.findByIdAndUpdate(req.params.promoId, {
+    Leaders.findByIdAndUpdate(req.params.leaderId, {
         $set: req.body
     }, { new: true })
-    .then((promotion) => {
+    .then((leader) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');            
-        res.json(promotion);
+        res.json(leader);
     }, (err) => next(err))
     .catch((err) => next(err));
 })
 .delete((req, res, next) => {
-    Promotions.findByIdAndRemove(req.params.promoId)
+    Leaders.findByIdAndRemove(req.params.leaderId)
     .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');    
@@ -78,4 +74,4 @@ promoRouter.route('/:promoId')
     .catch((err) => next(err));
 });
 
-module.exports = promoRouter;
+module.exports = leaderRouter;

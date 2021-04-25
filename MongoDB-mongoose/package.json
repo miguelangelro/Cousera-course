@@ -1,0 +1,17 @@
+{
+  "name": "mongodb-mongoose-miguel",
+  "version": "1.0.0",
+  "description": "## Task 1 You are given the following example of a promotion document. You will now create the Promotions schema and model to support the document:",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5",
+    "morgan": "^1.10.0"
+  }
+}
