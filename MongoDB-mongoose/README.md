@@ -1,5 +1,6 @@
-## Task 1
+# Assignment 2
 
+## Task 1
 You are given the following example of a promotion document. You will now create the Promotions schema and model to support the document:
 
 ```
